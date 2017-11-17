@@ -29,7 +29,7 @@
             <div class="navbar-menu">
                 <div class="navbar-end">
                     <div class="navbar-item">
-                        <a href="#">Logout</a>
+                        <a class="is-white" href="#" id="login-button">Login</a>
                     </div>
                 </div>
                 <button class="button navbar-burger">
@@ -40,49 +40,111 @@
             </div>
         </div>
     </nav>
-    <div class="container search-container">
-        <section class="section">
-            <div class="field">
-                <div class="control has-icons-left has-icons-right">
-                    <input class="input" type="text" placeholder="Search your contacts">
-                    <span class="icon is-small is-left">
-                        <i class="fa fa-search"></i>
-                    </span>
+    <section class="section">
+        <section class="hero">
+            <div class="hero-body">
+                <div class="container">
+                    <h1 class="title is-white">
+                        Time to stop the hassel of managing business contacts
+                    </h1>
+                    <a>
+                        <h2 class="subtitle is-white" id="join-button">
+                            Join BizContacts for free
+                        </h2>
+                    </a>
                 </div>
             </div>
         </section>
-        <section class="section">
-            <div class="card biz-card">
-                <header class="card-header">
-                    <p class="card-header-title">
-                        Kyle Armstrong
-                    </p>
-                </header>
-                <div class="card-content">
-                    <div class="content">
-                        <p>Company:
-                            <span>Dorsett Technologies</span>
-                        </p>
-                        <p>Cell:
-                            <span>(801)-971-0797</span>
-                        </p>
-                        <p>Email:
-                            <span>k90armstrong@gmail.com</span>
-                        </p>
-                    </div>
-                </div>
-                <footer class="card-footer">
-                    <a href="#" class="card-footer-item">Save</a>
-                    <a href="#" class="card-footer-item">Edit</a>
-                    <a href="#" class="card-footer-item">Delete</a>
-                </footer>
-            </div>
-        </section>
-    </div>
-    <div class="add-button-container">
-        <i class="fa fa-plus-square" aria-hidden="true"></i>
-    </div>
+    </section>
 
+    <!-- LOGIN MODAL -->
+    <div class="modal" id="login-modal">
+        <div class="modal-background"></div>
+        <div class="modal-content">
+            <div class="card">
+                <div class="card-content">
+                    <form>
+                        <div class="field">
+                            <label class="label">Email</label>
+                            <div class="control has-icons-left has-icons-right">
+                                <input class="input" type="email" placeholder="hello@youreawesome.com">
+                                <span class="icon is-small is-left">
+                                    <i class="fa fa-envelope"></i>
+                                </span>
+                            </div>
+                        </div>
+                        <div class="field">
+                            <label class="label">Password</label>
+                            <div class="control has-icons-left has-icons-right">
+                                <input class="input" type="password" placeholder="super secret password">
+                                <span class="icon is-small is-left">
+                                    <i class="fa fa-key"></i>
+                                </span>
+                            </div>
+                        </div>
+                        <div class="field is-grouped">
+                            <div class="control">
+                                <button class="button is-link" id="submit-login-button" type="submit">Login</button>
+                            </div>
+                            <div class="control">
+                                <button class="button is-text" id="cancel-login-button">Cancel</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <button class="modal-close is-large" aria-label="close"></button>
+    </div>
+    <!-- SIGNUP MODAL -->
+    <div class="modal" id="signup-modal">
+        <div class="modal-background"></div>
+        <div class="modal-content">
+            <div class="card">
+                <div class="card-content">
+                    <form>
+                        <div class="field">
+                            <label class="label">Email</label>
+                            <div class="control has-icons-left has-icons-right">
+                                <input class="input" type="email" placeholder="hello@youreawesome.com">
+                                <span class="icon is-small is-left">
+                                    <i class="fa fa-envelope"></i>
+                                </span>
+                            </div>
+                        </div>
+                        <div class="field">
+                            <label class="label">Password</label>
+                            <div class="control has-icons-left has-icons-right">
+                                <input class="input" type="password" placeholder="super secret password">
+                                <span class="icon is-small is-left">
+                                    <i class="fa fa-key"></i>
+                                </span>
+                            </div>
+                        </div>
+                        <div class="field">
+                            <label class="label">Confirm Password</label>
+                            <div class="control has-icons-left has-icons-right">
+                                <input class="input" type="password" placeholder="please match!!!!">
+                                <span class="icon is-small is-left">
+                                    <i class="fa fa-key"></i>
+                                </span>
+                            </div>
+                        </div>
+                        <div class="field is-grouped">
+                            <div class="control">
+                                <button class="button is-link" id="submit-signup-button" type="submit">Submit</button>
+                            </div>
+                            <div class="control">
+                                <button class="button is-text" id="cancel-signup-button">Cancel</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <button class="modal-close is-large" aria-label="close"></button>
+    </div>
+    <script src="welcome.js"></script>
 </body>
 
 </html>

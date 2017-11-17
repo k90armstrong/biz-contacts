@@ -1,0 +1,58 @@
+.brand {
+    width: 80px !important;
+    height: 40px !important;
+    padding: 0px;
+    margin-right: 5px;
+}
+
+body {
+    background-image: url('../siteImages/welcome-image.jpg');
+    height: 100%;
+    background-size: 100%;
+}
+
+html {
+    height: 100%;
+}
+
+.card-header {
+    padding: 0px;
+    box-shadow: none;
+}
+
+.search-container {
+    position: absolute;
+    top: 50px;
+    width: 70%;
+    left: 0;
+    right: 0;
+}
+
+.biz-card {
+    margin: 5px;
+    width: 48%;
+    float: left;
+}
+
+.add-button-container {
+    position: absolute;
+    bottom: 16px;
+    right: 16px;
+}
+
+.fa-plus-square {
+    font-size: 50px;
+    cursor: pointer;
+}
+
+.fa-plus-square:hover {
+    color: #209CEE;
+}
+
+.fa-plus-square:active {
+    color: #209CEE;
+}
+
+.is-white {
+    color: white;
+}

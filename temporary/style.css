@@ -5,6 +5,16 @@
     margin-right: 5px;
 }
 
+body {
+    background-image: url('welcome-image.jpg');
+    height: 100%;
+    background-size: 100%;
+}
+
+html {
+    height: 100%;
+}
+
 .card-header {
     padding: 0px;
     box-shadow: none;
@@ -41,4 +51,8 @@
 
 .fa-plus-square:active {
     color: #209CEE;
+}
+
+.is-white {
+    color: white;
 }
