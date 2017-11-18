@@ -11,7 +11,7 @@ def index(request):
         contact = Contact.objects.filter(user_id=user.id)
         print(contact)
         context = {'contact_list': contact.values()}
-        return render(request,'bizcontacts/dashboard.html', context)
+        return redirect('dashboard/')
     else:
         return render(request, 'bizcontacts/index.html') 
 
@@ -34,9 +34,7 @@ def signup(request):
             user = authenticate(request, username=email, password=password)
             if (user is not None):
                 login(request, user)
-                contact = Contact.objects.filter(user=user)
-                context = {'contact_list': contact.values(), 'user': user}
-                return render(request,'bizcontacts/dashboard.html', context)
+                return redirect('dashboard/')
 
 def login_view(request):
     username = request.POST['email']
@@ -46,9 +44,7 @@ def login_view(request):
     print(request)
     if (user is not None):
         login(request, user)
-        contact = Contact.objects.filter(user=user)
-        context = {'contact_list': contact.values(), 'user': user}
-        return render(request,'bizcontacts/dashboard.html', context)
+        return redirect('dashboard/')
 
 def logout_view(request):
     logout(request)
