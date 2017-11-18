@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://use.fontawesome.com/8a277ffb29.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.6.1/css/bulma.css">
+    <link rel="stylesheet" href="{% static 'bizcontacts/css/style.css' %}">
+    <link rel="stylesheet" href="{% static 'bizcontacts/css/welcome.css' %}">
+    
+    <title>Biz Contacts</title>
+</head>
+
+<body>
+    <nav class="navbar is-info is-fixed-top" role="navigation" aria-label="main navigation">
+        <div class="container">
+            <div class="navbar-brand">
+                <a class="navbar-item" href="#">
+                    <div class="card brand">
+                        <header class="card-header">
+                            <p class="card-header-title">
+                                Biz
+                            </p>
+                        </header>
+                    </div>
+                    <p>Contacts</p>
+                </a>
+            </div>
+            <div class="navbar-menu">
+                <div class="navbar-end">
+                    <div class="navbar-item">
+                        <a class="is-white" href="#" id="login-button">Login</a>
+                    </div>
+                </div>
+                <button class="button navbar-burger">
+                    <span><div class="navbar-item">
+                        <a class="is-white login-button" href="#">Login</a>
+                    </div></span>
+                    <span></span>
+                    <span></span>
+                </button>
+            </div>
+        </div>
+    </nav>
+    {% block content %}
+    {% endblock %}
+    <!-- LOGIN MODAL -->
+    <div class="modal" id="login-modal">
+        <div class="modal-background"></div>
+        <div class="modal-content">
+            <div class="card">
+                <div class="card-content">
+                    <form action="login/" method="post">
+                        {% csrf_token %}
+                        <div class="field">
+                            <label class="label">Email</label>
+                            <div class="control has-icons-left has-icons-right">
+                                <input name="email" class="input" type="email" placeholder="hello@youreawesome.com">
+                                <span class="icon is-small is-left">
+                                    <i class="fa fa-envelope"></i>
+                                </span>
+                            </div>
+                        </div>
+                        <div class="field">
+                            <label class="label">Password</label>
+                            <div class="control has-icons-left has-icons-right">
+                                <input name="password" class="input" type="password" placeholder="super secret password">
+                                <span class="icon is-small is-left">
+                                    <i class="fa fa-key"></i>
+                                </span>
+                            </div>
+                        </div>
+                        <div class="field is-grouped">
+                            <div class="control">
+                                <button class="button is-link" id="submit-login-button" type="submit">Login</button>
+                            </div>
+                            <div class="control">
+                                <button class="button is-text" id="cancel-login-button">Cancel</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <button class="modal-close is-large" aria-label="close"></button>
+    </div>
+    <!-- SIGNUP MODAL -->
+    <div class="modal" id="signup-modal">
+        <div class="modal-background"></div>
+        <div class="modal-content">
+            <div class="card">
+                <div class="card-content">
+                    <form action="signup/" method="post">
+                        {% csrf_token %}
+                        <div class="field">
+                            <label class="label">Email</label>
+                            <div class="control has-icons-left has-icons-right">
+                                <input name="signup_email" class="input" type="email" placeholder="hello@youreawesome.com">
+                                <span class="icon is-small is-left">
+                                    <i class="fa fa-envelope"></i>
+                                </span>
+                            </div>
+                        </div>
+                        <div class="field">
+                            <label class="label">Password</label>
+                            <div class="control has-icons-left has-icons-right">
+                                <input name="password" class="input" type="password" placeholder="super secret password">
+                                <span class="icon is-small is-left">
+                                    <i class="fa fa-key"></i>
+                                </span>
+                            </div>
+                        </div>
+                        <div class="field">
+                            <label class="label">Confirm Password</label>
+                            <div class="control has-icons-left has-icons-right">
+                                <input name="confirm_password" class="input" type="password" placeholder="please match!!!!">
+                                <span class="icon is-small is-left">
+                                    <i class="fa fa-key"></i>
+                                </span>
+                            </div>
+                        </div>
+                        <div class="field is-grouped">
+                            <div class="control">
+                                <button class="button is-link" id="submit-signup-button" type="submit">Submit</button>
+                            </div>
+                            <div class="control">
+                                <button class="button is-text" id="cancel-signup-button">Cancel</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <button class="modal-close is-large" aria-label="close"></button>
+    </div>
+    {% block scripts %}
+    <script src="{% static 'bizcontacts/javascript/welcome.js' %}"></script>
+    {% endblock %}
+</body>
+
+</html>

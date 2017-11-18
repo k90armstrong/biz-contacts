@@ -46,11 +46,12 @@ def login_view(request):
     print(request)
     if (user is not None):
         login(request, user)
-        return redirect('dashboard/')
+        return redirect(reverse('dashboard'))
+    else:
+        return redirect(reverse('index'))
 
 def logout_view(request):
     logout(request)
     return redirect(reverse('index'))
-    # redirect to the home page?
 
 
