@@ -31,7 +31,26 @@
             <div class="navbar-menu">
                 <div class="navbar-end">
                     <div class="navbar-item">
-                        <a href="#">{{ user.username }}</a>
+                        <div class="dropdown" id="right-menu-dropdown">
+                            <div class="dropdown-trigger">
+                                <button class="button" id="right-menu" aria-haspopup="true" aria-controls="dropdown-menu">
+                                    <span>{{ user.username }}</span>
+                                    <span class="icon is-small">
+                                        <i class="fa fa-angle-down" aria-hidden="true"></i>
+                                    </span>
+                                </button>
+                            </div>
+                            <div class="dropdown-menu" id="dropdown-menu" role="menu">
+                                <div class="dropdown-content">
+                                    <a href="#" class="dropdown-item">
+                                        Logout
+                                    </a>
+                                    <a class="dropdown-item">
+                                        Settings
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <button class="button navbar-burger">
@@ -91,7 +110,7 @@
     <div class="add-button-container">
         <i class="fa fa-plus-square" aria-hidden="true"></i>
     </div>
-
+    <script src="{% static 'bizcontacts/javascript/app.js' %}"></script>
 </body>
 
 </html>
