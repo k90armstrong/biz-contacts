@@ -40,7 +40,7 @@
                                     </span>
                                 </button>
                             </div>
-                            <div class="dropdown-menu" id="dropdown-menu" role="menu">
+                            <div class="dropdown-menu is-info" id="dropdown-menu" role="menu">
                                 <div class="dropdown-content">
                                     <a href="/bizcontacts/logout" class="dropdown-item">
                                         Logout
@@ -107,9 +107,67 @@
             {% endif %}
         </section>
     </div>
-    <div class="add-button-container">
+    <!-- NEW CONTACT MODAL -->
+    <div class="modal" id="new-contact-modal">
+        <div class="modal-background"></div>
+        <div class="modal-content">
+            <div class="card">
+                <div class="card-content">
+                        <div class="file">
+                            <label class="file-label">
+                            <input class="file-input" type="file" name="resume">
+                                <span class="file-cta">
+                                    <span class="file-icon">
+                                    <i class="fa fa-upload"></i>
+                                    </span>
+                                    <span class="file-label">
+                                    Upload a photo of card...
+                                    </span>
+                                </span>
+                            </label>
+                      </div>
+                    <form>
+                        {% csrf_token %}
+                        <div class="field">
+                            <label class="label">Email</label>
+                            <div class="control has-icons-left has-icons-right">
+                                <input name="email" class="input" type="email" placeholder="hello@youreawesome.com">
+                                <span class="icon is-small is-left">
+                                    <i class="fa fa-envelope"></i>
+                                </span>
+                            </div>
+                        </div>
+                        <div class="field">
+                            <label class="label">Password</label>
+                            <div class="control has-icons-left has-icons-right">
+                                <input name="password" class="input" type="password" placeholder="super secret password">
+                                <span class="icon is-small is-left">
+                                    <i class="fa fa-key"></i>
+                                </span>
+                            </div>
+                        </div>
+                        <div class="field is-grouped">
+                            <div class="control">
+                                <button class="button is-link" type="submit">Add</button>
+                            </div>
+                            <div class="control">
+                                <button class="button is-text">Cancel</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <button class="modal-close is-large" aria-label="close"></button>
+    </div>
+
+    <div class="add-button-container" id="new-contact-button">
         <i class="fa fa-plus-square" aria-hidden="true"></i>
     </div>
+    <script
+    src="https://code.jquery.com/jquery-3.2.1.min.js"
+    integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+    crossorigin="anonymous"></script>
     <script src="{% static 'bizcontacts/javascript/app.js' %}"></script>
 </body>
 

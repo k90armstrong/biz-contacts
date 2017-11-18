@@ -1,0 +1,7 @@
+html,body {
+    height: 100%;
+}
+body {
+    background-image: url('../siteImages/welcome-image.jpg');
+    background-size: 100%;
+}

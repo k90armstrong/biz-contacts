@@ -5,13 +5,7 @@
     margin-right: 5px;
 }
 
-body {
-    background-image: url('../siteImages/welcome-image.jpg');
-    height: 100%;
-    background-size: 100%;
-}
-
-html {
+html,body {
     height: 100%;
 }
 
@@ -35,7 +29,7 @@ html {
 }
 
 .add-button-container {
-    position: absolute;
+    position: fixed;
     bottom: 16px;
     right: 16px;
 }
