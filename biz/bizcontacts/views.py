@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect, reverse
 from .models import Contact, Address, Image 
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.decorators import login_required
 
 # Create your views here.
 def index(request):
@@ -15,6 +16,7 @@ def index(request):
     else:
         return render(request, 'bizcontacts/index.html') 
 
+@login_required()
 def dashboard(request):
     user = request.user
     contact = Contact.objects.filter(user=user)
