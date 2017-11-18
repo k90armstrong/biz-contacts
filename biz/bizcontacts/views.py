@@ -5,7 +5,15 @@ from django.contrib.auth import authenticate, login, logout
 
 # Create your views here.
 def index(request):
-    return render(request, 'bizcontacts/index.html')
+    session_id = request.session
+    if request.user.is_authenticated:
+        user = request.user
+        contact = Contact.objects.filter(user_id=user.id)
+        print(contact)
+        context = {'contact_list': contact.values()}
+        return render(request,'bizcontacts/dashboard.html', context)
+    else:
+        return render(request, 'bizcontacts/index.html') 
 
 def dashboard(request):
     user = request.user
@@ -40,7 +48,7 @@ def login_view(request):
         login(request, user)
         contact = Contact.objects.filter(user=user)
         context = {'contact_list': contact.values(), 'user': user}
-        return reverse(dashboard)
+        return render(request,'bizcontacts/dashboard.html', context)
 
 def logout_view(request):
     logout(request)
