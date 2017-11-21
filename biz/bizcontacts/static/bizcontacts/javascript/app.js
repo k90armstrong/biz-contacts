@@ -48,12 +48,27 @@ document.addEventListener("DOMContentLoaded", function (event) {
     }
 
     function addNewContactHandler(event) {
-        event.stopPropagation();        
+        event.stopPropagation();  
         openModal(newContactModal);
+        getNewContactForm();
     }
 
     function modalClickHandler(event) {
         event.stopPropagation();
+    }
+
+    // ajax calls
+    function getNewContactForm() {
+        console.log('start of ajax');
+        $.ajax({
+            url: 'newcontact/',
+            type: 'get',
+            dataType: 'json',
+            success: function (data) {
+                console.log('form stuff')
+              $("#contact-info-form").html(data.html_form);
+            }
+        });
     }
 
     // add event listener to the join and login

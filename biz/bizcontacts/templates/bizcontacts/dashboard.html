@@ -52,48 +52,8 @@
         <div class="modal-content">
             <div class="card">
                 <div class="card-content">
-                        <div class="file">
-                            <label class="file-label">
-                            <input class="file-input" type="file" name="resume">
-                                <span class="file-cta">
-                                    <span class="file-icon">
-                                    <i class="fa fa-upload"></i>
-                                    </span>
-                                    <span class="file-label">
-                                    Upload a photo of card...
-                                    </span>
-                                </span>
-                            </label>
-                      </div>
-                    <form>
-                        {% csrf_token %}
-                        <div class="field">
-                            <label class="label">Email</label>
-                            <div class="control has-icons-left has-icons-right">
-                                <input name="email" class="input" type="email" placeholder="hello@youreawesome.com">
-                                <span class="icon is-small is-left">
-                                    <i class="fa fa-envelope"></i>
-                                </span>
-                            </div>
-                        </div>
-                        <div class="field">
-                            <label class="label">Password</label>
-                            <div class="control has-icons-left has-icons-right">
-                                <input name="password" class="input" type="password" placeholder="super secret password">
-                                <span class="icon is-small is-left">
-                                    <i class="fa fa-key"></i>
-                                </span>
-                            </div>
-                        </div>
-                        <div class="field is-grouped">
-                            <div class="control">
-                                <button class="button is-link" type="submit">Add</button>
-                            </div>
-                            <div class="control">
-                                <button class="button is-text" type="reset">Cancel</button>
-                            </div>
-                        </div>
-                    </form>
+                    <div id="photo-upload-form"></div>
+                    <div id="contact-info-form"></div>
                 </div>
             </div>
         </div>

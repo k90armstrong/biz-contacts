@@ -16,6 +16,7 @@ class Contact(models.Model):
     work_number = models.CharField(validators=[phone_regex], max_length=15, blank=True)
     email_regex = RegexValidator(regex=r'\w+@\w+\.\w+$')
     email = models.CharField(validators=[email_regex], max_length=200, blank=True) 
+    website = models.CharField(max_length=500, blank=True)
     notes = models.CharField(max_length=500, blank=True)
     image = models.ForeignKey(Image, on_delete=models.CASCADE, null=True, blank=True)
 

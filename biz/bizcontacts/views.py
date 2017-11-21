@@ -1,5 +1,8 @@
 from django.shortcuts import render, redirect, reverse
-from .models import Contact, Address, Image 
+from django.template.loader import render_to_string
+from django.http import JsonResponse
+from .models import Contact, Address, Image
+from .forms import NewContact
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
@@ -54,4 +57,11 @@ def logout_view(request):
     logout(request)
     return redirect(reverse('index'))
 
-
+def create_contact(request):
+    form = NewContact()
+    context = {'form': form}
+    html_form = render_to_string('bizcontacts/partial_contact_create.html',
+        context,
+        request=request,
+    )
+    return JsonResponse({'html_form': html_form})
