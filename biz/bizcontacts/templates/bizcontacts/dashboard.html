@@ -52,8 +52,18 @@
         <div class="modal-content">
             <div class="card">
                 <div class="card-content">
-                    <div id="photo-upload-form"></div>
-                    <div id="contact-info-form"></div>
+                    <form method="post">
+                        <div id="photo-upload-form"></div>
+                        <div id="contact-info-form"></div>
+                        <div class="field is-grouped">
+                            <div class="control">
+                                <button class="button is-link" id="submit-login-button" type="submit">Create</button>
+                            </div>
+                            <div class="control">
+                                <button class="button is-text" id="cancel-login-button" type="reset">Cancel</button>
+                            </div>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>

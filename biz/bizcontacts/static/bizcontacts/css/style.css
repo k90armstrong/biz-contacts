@@ -50,3 +50,13 @@ html,body {
 .is-white {
     color: white;
 }
+
+#new-contact-modal .modal-content {
+    position: absolute;
+    top: 65px;
+    height: 88vh;
+}
+
+#new-contact-modal .field.is-grouped {
+    margin-top: 20px;
+}
