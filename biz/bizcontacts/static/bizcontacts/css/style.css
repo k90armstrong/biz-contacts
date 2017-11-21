@@ -28,6 +28,15 @@ html,body {
     float: left;
 }
 
+#join-button {
+    text-decoration: underline;
+    color: white;
+}
+
+#join-button:hover {
+    color: #209CEE;
+}
+
 .add-button-container {
     position: fixed;
     bottom: 16px;
