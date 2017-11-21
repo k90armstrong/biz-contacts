@@ -36,7 +36,7 @@ def signup(request):
             user = authenticate(request, username=email, password=password)
             if (user is not None):
                 login(request, user)
-                return redirect('dashboard/')
+                return redirect('dashboard')
 
 def login_view(request):
     username = request.POST['email']
