@@ -75,8 +75,6 @@ def image_upload(request):
     print(request.FILES)
     if request.method == 'POST':
         form = ImageForm(request.POST, request.FILES)
-        print('POSTING!!!!')
-        print(form)
         if form.is_valid():
             form.save()
             return redirect(reverse('dashboard'))

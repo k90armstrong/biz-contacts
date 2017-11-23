@@ -118,7 +118,17 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.11/howto/static-files/
 
+ENV_PATH = os.path.abspath(os.path.dirname(__file__))
+MEDIA_ROOT = os.path.join(ENV_PATH, 'media/')
+
 STATIC_URL = '/static/'
+MEDIA_URL = '/media/'
 
 # session settings
 SESSION_COOKIE_AGE = 1209600 #(2 weeks, in seconds)
+'''
+try:
+    from local_settings import *
+except ImportError:
+    pass
+'''
