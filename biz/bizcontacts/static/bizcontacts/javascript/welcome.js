@@ -32,7 +32,7 @@ document.addEventListener("DOMContentLoaded", function (event) {
     }
 
     // add event listener to the join and login
-    document.getElementById('join-button').addEventListener('click', joinClickHandler);
+    // document.getElementById('join-button').addEventListener('click', joinClickHandler);
     document.getElementById('login-button').addEventListener('click', loginClickHandler);
     document.getElementById('submit-login-button').addEventListener('click', submitLoginHandler);
     document.getElementById('submit-login-button').addEventListener('click', submitLoginHandler);

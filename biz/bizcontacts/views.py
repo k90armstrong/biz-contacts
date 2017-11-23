@@ -1,11 +1,16 @@
 from django.shortcuts import render, redirect, reverse
+<<<<<<< 092b0196c2297538498904892cc3aceb7459d857
 from django.template.loader import render_to_string
 from django.http import JsonResponse
 from .models import Contact, Address, Image
 from .forms import NewContact
+=======
+>>>>>>> Image upload
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
+from .models import Contact, Address, Image 
+from .forms import ImageForm
 
 # Create your views here.
 def index(request):
@@ -19,7 +24,7 @@ def index(request):
     else:
         return render(request, 'bizcontacts/index.html') 
 
-@login_required()
+#@login_required()
 def dashboard(request):
     user = request.user
     contact = Contact.objects.filter(user=user)
@@ -65,3 +70,19 @@ def create_contact(request):
         request=request,
     )
     return JsonResponse({'html_form': html_form})
+
+def image_upload(request):
+    print(request.FILES)
+    if request.method == 'POST':
+        form = ImageForm(request.POST, request.FILES)
+        print('POSTING!!!!')
+        print(form)
+        if form.is_valid():
+            form.save()
+            return redirect(reverse('dashboard'))
+    else:
+        form = ImageForm()
+    return render(request, 'bizcontacts/image_upload_form.html', {
+        'form': form
+    })
+

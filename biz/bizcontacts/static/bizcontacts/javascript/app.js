@@ -72,8 +72,8 @@ document.addEventListener("DOMContentLoaded", function (event) {
     }
 
     // add event listener to the join and login
-    document.getElementById('right-menu').addEventListener('click', rightMenuHandler);
-    document.addEventListener('click', documentClickHandler);
+    // document.getElementById('right-menu').addEventListener('click', rightMenuHandler);
+    // document.addEventListener('click', documentClickHandler);
     document.getElementById('new-contact-button').addEventListener('click', addNewContactHandler);
     $('.modal-content').on('click', modalClickHandler);
 

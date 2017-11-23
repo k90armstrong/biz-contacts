@@ -4,8 +4,8 @@ from django.core.validators import RegexValidator
 
 # Create your models here.
 class Image(models.Model):
-    front_url =  models.CharField(max_length=300, blank=True)
-    back_url =  models.CharField(max_length=300, blank=True)
+    front_url = models.FileField(upload_to='cards/')
+    back_url = models.FileField(upload_to='cards/', null=True)
 
 class Contact(models.Model):
     name = models.CharField(max_length=200, blank=True)

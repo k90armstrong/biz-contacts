@@ -1,5 +1,5 @@
 {% extends 'bizcontacts/base.html' %}
-{% load staticfiles %}
+{% load static %}
 {% block content %}
     <div class="container search-container">
         <!-- START SEARCH -->
@@ -69,9 +69,10 @@
         </div>
         <button class="modal-close is-large" aria-label="close"></button>
     </div>
-
     <div class="add-button-container" id="new-contact-button">
-        <i class="fa fa-plus-square" aria-hidden="true"></i>
+        <a href="{% url 'upload' %}">
+            <i class="fa fa-plus-square" aria-hidden="true"></i>
+        </a>
     </div>
 {% endblock %}
 
@@ -80,5 +81,4 @@
     src="https://code.jquery.com/jquery-3.2.1.min.js"
     integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
     crossorigin="anonymous"></script>
-    <script src="{% static 'bizcontacts/javascript/app.js' %}"></script>
 {% endblock %}
