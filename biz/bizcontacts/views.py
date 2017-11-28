@@ -77,6 +77,6 @@ def create_contact(request):
         work_number = request.POST['work_number']
         notes = request.POST['notes']
         user = request.user
-        contact = Contact(name=name, email=email, business_name=business_name, user=user, cell_number=cell_number, work_number=work_number, notes=notes)
+        contact = Contact(name=name, email=email, business_name=business_name, user=user, cell_number=cell_number, work_number=work_number, notes=notes, website=website)
         contact.save()
         return redirect(reverse('dashboard')) 
