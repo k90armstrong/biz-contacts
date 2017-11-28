@@ -59,9 +59,24 @@ def logout_view(request):
 
 def create_contact(request):
     form = NewContact()
-    context = {'form': form}
-    html_form = render_to_string('bizcontacts/partial_contact_create.html',
-        context,
-        request=request,
-    )
-    return JsonResponse({'html_form': html_form})
+    if request.method == 'GET':
+        context = {'form': form}
+        html_form = render_to_string('bizcontacts/partial_contact_create.html',
+            context,
+            request=request,
+        )
+        return JsonResponse({'html_form': html_form})
+    else:
+        # add some checks to make sure that the contact info is in the correct form
+        # if it isn't we need to do something else
+        name = request.POST['name']
+        email = request.POST['email']
+        business_name = request.POST['business_name']
+        website = request.POST['website']
+        cell_number = request.POST['cell_number']
+        work_number = request.POST['work_number']
+        notes = request.POST['notes']
+        user = request.user
+        contact = Contact(name=name, email=email, business_name=business_name, user=user, cell_number=cell_number, work_number=work_number, notes=notes)
+        contact.save()
+        return redirect(reverse('dashboard')) 
