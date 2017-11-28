@@ -57,6 +57,22 @@ document.addEventListener("DOMContentLoaded", function (event) {
         event.stopPropagation();
     }
 
+    function keyUpOnSearchHandler(event) {
+        var searchTerm = document.getElementById('search_input').value;
+        var url = 'search/';
+        url += '?q=' + searchTerm;
+        $.ajax({
+            url: url,
+            type: 'get',
+            dataType: 'json',
+            success: function (data) {
+                $('#contact_cards').html(data.html);
+                console.log('did it work?')
+            }
+        });
+
+    }
+
     // ajax calls
     function getNewContactForm() {
         console.log('start of ajax');
@@ -75,6 +91,7 @@ document.addEventListener("DOMContentLoaded", function (event) {
     document.getElementById('right-menu').addEventListener('click', rightMenuHandler);
     document.addEventListener('click', documentClickHandler);
     document.getElementById('new-contact-button').addEventListener('click', addNewContactHandler);
+    document.getElementById('search_input').addEventListener('keyup', keyUpOnSearchHandler);
     $('.modal-content').on('click', modalClickHandler);
 
 });

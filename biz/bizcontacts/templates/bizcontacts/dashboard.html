@@ -6,15 +6,18 @@
         <section class="section">
             <div class="field">
                 <div class="control has-icons-left has-icons-right">
-                    <input class="input" type="text" placeholder="Search your contacts">
-                    <span class="icon is-small is-left">
-                        <i class="fa fa-search"></i>
-                    </span>
+                    <form>
+                    <!-- <form method="get" action="search/"> -->
+                        <input id="search_input" name="q" class="input" type="text" placeholder="Search your contacts">
+                        <span class="icon is-small is-left">
+                            <i class="fa fa-search"></i>
+                        </span>
+                    </form>
                 </div>
             </div>
         </section>
         <!-- END SEARCH -->
-        <section class="section">
+        <section class="section" id="contact_cards">
             {% if contact_list %} 
                 {% for contact in contact_list %}
             <div class="card biz-card">
@@ -29,7 +32,7 @@
                             <span>{{ contact.business_name }}</span>
                         </p>
                         <p>Website:
-                                <span><a href="{{ contact.website }}">{{ contact.website }}</a></span>
+                                <span><a href="//{{ contact.website }}" target="_blank">{{ contact.website }}</a></span>
                             </p>
                         <p>Cell:
                             <span>(801)-971-0797</span>

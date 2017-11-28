@@ -26,7 +26,20 @@ def dashboard(request):
     print(contact)
     context = {'contact_list': contact.values()}
     return render(request,'bizcontacts/dashboard.html', context)
-    
+
+@login_required()
+def dashboard_search(request):
+    user = request.user
+    search_term = request.GET['q']
+    contact = Contact.objects.filter(user=user).filter(name__icontains=search_term)
+    print(contact)
+    context = {'contact_list': contact.values()}
+    html = render_to_string('bizcontacts/cards.html',
+            context,
+            request=request,
+        )
+    return JsonResponse({'html': html})
+        
 def signup(request):
     if (True):
         email = request.POST['signup_email']
