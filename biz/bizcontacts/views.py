@@ -11,10 +11,6 @@ from django.contrib.auth.decorators import login_required
 def index(request):
     session_id = request.session
     if request.user.is_authenticated:
-        user = request.user
-        contact = Contact.objects.filter(user_id=user.id)
-        print(contact)
-        context = {'contact_list': contact.values()}
         return redirect('dashboard/')
     else:
         return render(request, 'bizcontacts/index.html') 
@@ -22,9 +18,11 @@ def index(request):
 @login_required()
 def dashboard(request):
     user = request.user
-    contact = Contact.objects.filter(user=user)
-    print(contact)
-    context = {'contact_list': contact.values()}
+    contacts = Contact.objects.filter(user=user)
+    for contact in contacts:
+        contact.cell_displayable = contact.make_displayable_phone_number(contact.cell_number)
+        contact.work_displayable = contact.make_displayable_phone_number(contact.cell_number)        
+    context = {'contact_list': contacts}
     return render(request,'bizcontacts/dashboard.html', context)
 
 @login_required()
