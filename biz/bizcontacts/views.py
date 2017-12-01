@@ -1,16 +1,15 @@
 from django.shortcuts import render, redirect, reverse
-<<<<<<< 092b0196c2297538498904892cc3aceb7459d857
 from django.template.loader import render_to_string
-from django.http import JsonResponse
-from .models import Contact, Address, Image
-from .forms import NewContact
-=======
->>>>>>> Image upload
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
+from django.http import JsonResponse
+from google.cloud import vision
+from google.cloud.vision import types
+import io
+import os
 from .models import Contact, Address, Image 
-from .forms import ImageForm
+from .forms import ImageForm, NewContact
 
 # Create your views here.
 def index(request):
@@ -77,10 +76,25 @@ def image_upload(request):
         form = ImageForm(request.POST, request.FILES)
         if form.is_valid():
             form.save()
+            print(request.FILES['front_url'])
+            parse_image(request.FILES['front_url'])
             return redirect(reverse('dashboard'))
     else:
         form = ImageForm()
     return render(request, 'bizcontacts/image_upload_form.html', {
         'form': form
     })
+
+def parse_image(image_file):
+    client = vision.ImageAnnotatorClient()
+    file_name = os.path.join(os.path.dirname(__file__, image_file))
+    with io.open(file_name, 'rb') as vision_file:
+        content = vision_file.read()
+    image = types.Image(content=content)
+    response = client.label_detection(image=image)
+    labels = response.label_annotations
+    print('Labels')
+    for label in labels:
+        print(label.description)
+
 
