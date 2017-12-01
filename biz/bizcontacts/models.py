@@ -20,6 +20,28 @@ class Contact(models.Model):
     notes = models.CharField(max_length=500, blank=True)
     image = models.ForeignKey(Image, on_delete=models.CASCADE, null=True, blank=True)
 
+    def make_displayable_phone_number(self, number):
+        '''This is a method that takes in a number (a phone number)
+        and then returns a string with the formatted number 8019877866
+        will return (801)-987-7866'''
+        if number != None:
+            number_list = list(number)
+            # probably is a better way to do this? refactor later
+            if len(number_list) == 11:
+                number_list.insert(1,'-')
+                number_list.insert(2,'(')
+                number_list.insert(6,')')
+                number_list.insert(7,'-')
+                number_list.insert(11,'-')
+            if len(number_list) == 10:
+                number_list.insert(0,'(')
+                number_list.insert(4,')')
+                number_list.insert(5,'-')
+                number_list.insert(9,'-')    
+            return ('').join(number_list)
+        else:
+            return ''
+
 class Address(models.Model):
     contact = models.ForeignKey(Contact, on_delete=models.CASCADE)
     address1 = models.CharField(max_length=300, blank=True)

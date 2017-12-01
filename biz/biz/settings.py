@@ -101,6 +101,7 @@ AUTH_PASSWORD_VALIDATORS = [
 ]
 
 
+
 # Internationalization
 # https://docs.djangoproject.com/en/1.11/topics/i18n/
 
@@ -126,9 +127,8 @@ MEDIA_URL = '/media/'
 
 # session settings
 SESSION_COOKIE_AGE = 1209600 #(2 weeks, in seconds)
-'''
+
 try:
     from local_settings import *
 except ImportError:
     pass
-'''

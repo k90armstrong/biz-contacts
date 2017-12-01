@@ -1,0 +1,35 @@
+{% if contact_list %} 
+    {% for contact in contact_list %}
+    <div class="card biz-card">
+    <header class="card-header">
+        <p class="card-header-title">
+            {{ contact.name }}
+        </p>
+    </header>
+    <div class="card-content">
+        <div class="content">
+            <p>Company:
+                <span>{{ contact.business_name }}</span>
+            </p>
+            <p>Website:
+                    <span><a href="//{{ contact.website }}" target="_blank">{{ contact.website }}</a></span>
+                </p>
+            <p>Cell:
+                    <span>{{ contact.cell_displayable }}</span>
+                </p>
+            <p>Work Phone:
+                    <span>{{ contact.work_displayable }}</span>
+                </p>
+            <p>Email:
+                <span>{{ contact.email }}</span>
+            </p>
+        </div>
+    </div>
+    <footer class="card-footer">
+        <a href="#" class="card-footer-item">Save</a>
+        <a href="#" class="card-footer-item">Edit</a>
+        <a href="#" class="card-footer-item">Delete</a>
+    </footer>
+    </div>
+    {% endfor %} 
+{% endif %}

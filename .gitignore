@@ -54,6 +54,7 @@ coverage.xml
 *.log
 media/
 local_settings.py
+*.json
 
 # Flask stuff:
 instance/

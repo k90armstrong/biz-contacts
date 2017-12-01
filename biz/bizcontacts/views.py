@@ -10,15 +10,18 @@ import io
 import os
 from .models import Contact, Address, Image 
 from .forms import ImageForm, NewContact
+from biz.settings import BASE_DIR
+
+
+#instantiates a client, specifying the project credentials (json file)
+path_to_json = os.path.join(BASE_DIR, 'biz\\biz-contacts-service-account.json')
+print(path_to_json)
+vision_client = vision.Client.from_service_account_json(path_to_json, "biz-contacts")
 
 # Create your views here.
 def index(request):
     session_id = request.session
     if request.user.is_authenticated:
-        user = request.user
-        contact = Contact.objects.filter(user_id=user.id)
-        print(contact)
-        context = {'contact_list': contact.values()}
         return redirect('dashboard/')
     else:
         return render(request, 'bizcontacts/index.html') 
@@ -26,11 +29,26 @@ def index(request):
 #@login_required()
 def dashboard(request):
     user = request.user
-    contact = Contact.objects.filter(user=user)
+    contacts = Contact.objects.filter(user=user)
+    for contact in contacts:
+        contact.cell_displayable = contact.make_displayable_phone_number(contact.cell_number)
+        contact.work_displayable = contact.make_displayable_phone_number(contact.cell_number)        
+    context = {'contact_list': contacts}
+    return render(request,'bizcontacts/dashboard.html', context)
+
+@login_required()
+def dashboard_search(request):
+    user = request.user
+    search_term = request.GET['q']
+    contact = Contact.objects.filter(user=user).filter(name__icontains=search_term)
     print(contact)
     context = {'contact_list': contact.values()}
-    return render(request,'bizcontacts/dashboard.html', context)
-    
+    html = render_to_string('bizcontacts/cards.html',
+            context,
+            request=request,
+        )
+    return JsonResponse({'html': html})
+        
 def signup(request):
     if (True):
         email = request.POST['signup_email']
@@ -63,12 +81,27 @@ def logout_view(request):
 
 def create_contact(request):
     form = NewContact()
-    context = {'form': form}
-    html_form = render_to_string('bizcontacts/partial_contact_create.html',
-        context,
-        request=request,
-    )
-    return JsonResponse({'html_form': html_form})
+    if request.method == 'GET':
+      context = {'form': form}
+      html_form = render_to_string('bizcontacts/partial_contact_create.html',
+          context,
+          request=request,
+      )
+      return JsonResponse({'html_form': html_form})
+    else:
+        # add some checks to make sure that the contact info is in the correct form
+        # if it isn't we need to do something else
+        name = request.POST['name']
+        email = request.POST['email']
+        business_name = request.POST['business_name']
+        website = request.POST['website']
+        cell_number = request.POST['cell_number']
+        work_number = request.POST['work_number']
+        notes = request.POST['notes']
+        user = request.user
+        contact = Contact(name=name, email=email, business_name=business_name, user=user, cell_number=cell_number, work_number=work_number, notes=notes, website=website)
+        contact.save()
+        return redirect(reverse('dashboard')) 
 
 def image_upload(request):
     print(request.FILES)
@@ -84,7 +117,7 @@ def image_upload(request):
     return render(request, 'bizcontacts/image_upload_form.html', {
         'form': form
     })
-
+  
 def parse_image(image_file):
     client = vision.ImageAnnotatorClient()
     file_name = os.path.join(os.path.dirname(__file__, image_file))
@@ -96,5 +129,3 @@ def parse_image(image_file):
     print('Labels')
     for label in labels:
         print(label.description)
-
-
