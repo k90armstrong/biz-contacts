@@ -1,15 +1,17 @@
 from django.shortcuts import render, redirect, reverse
 from django.template.loader import render_to_string
-from django.http import JsonResponse
-from .models import Contact, Address, Image
-from .forms import NewContact
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
-from biz.settings import BASE_DIR
+from django.http import JsonResponse
 from google.cloud import vision
 from google.cloud.vision import types
-import os, io
+import io
+import os
+from .models import Contact, Address, Image 
+from .forms import ImageForm, NewContact
+from biz.settings import BASE_DIR
+
 
 #instantiates a client, specifying the project credentials (json file)
 path_to_json = os.path.join(BASE_DIR, 'biz\\biz-contacts-service-account.json')
@@ -24,7 +26,7 @@ def index(request):
     else:
         return render(request, 'bizcontacts/index.html') 
 
-@login_required()
+#@login_required()
 def dashboard(request):
     user = request.user
     contacts = Contact.objects.filter(user=user)
@@ -80,12 +82,12 @@ def logout_view(request):
 def create_contact(request):
     form = NewContact()
     if request.method == 'GET':
-        context = {'form': form}
-        html_form = render_to_string('bizcontacts/partial_contact_create.html',
-            context,
-            request=request,
-        )
-        return JsonResponse({'html_form': html_form})
+      context = {'form': form}
+      html_form = render_to_string('bizcontacts/partial_contact_create.html',
+          context,
+          request=request,
+      )
+      return JsonResponse({'html_form': html_form})
     else:
         # add some checks to make sure that the contact info is in the correct form
         # if it isn't we need to do something else
@@ -101,6 +103,21 @@ def create_contact(request):
         contact.save()
         return redirect(reverse('dashboard')) 
 
+def image_upload(request):
+    print(request.FILES)
+    if request.method == 'POST':
+        form = ImageForm(request.POST, request.FILES)
+        if form.is_valid():
+            form.save()
+            print(request.FILES['front_url'])
+            parse_image(request.FILES['front_url'])
+            return redirect(reverse('dashboard'))
+    else:
+        form = ImageForm()
+    return render(request, 'bizcontacts/image_upload_form.html', {
+        'form': form
+    })
+  
 def parse_image(image_file):
     client = vision.ImageAnnotatorClient()
     file_name = os.path.join(os.path.dirname(__file__, image_file))

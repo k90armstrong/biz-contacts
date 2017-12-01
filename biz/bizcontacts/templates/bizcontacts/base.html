@@ -159,8 +159,9 @@
         </div>
         <button class="modal-close is-large" aria-label="close"></button>
     </div>
-    {% block scripts %}
+    <script src="{% static 'bizcontacts/javascript/app.js' %}"></script>
     <script src="{% static 'bizcontacts/javascript/welcome.js' %}"></script>
+    {% block scripts %}
     {% endblock %}
 </body>
 
