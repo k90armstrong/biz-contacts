@@ -4,8 +4,8 @@ from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.http import JsonResponse
-from google.cloud import vision
-from google.cloud.vision import types
+# from google.cloud import vision
+# from google.cloud.vision import types
 import io
 import os
 from .models import Contact, Address, Image 
@@ -14,9 +14,9 @@ from biz.settings import BASE_DIR
 
 
 #instantiates a client, specifying the project credentials (json file)
-path_to_json = os.path.join(BASE_DIR, 'biz\\biz-contacts-service-account.json')
-print(path_to_json)
-vision_client = vision.Client.from_service_account_json(path_to_json, "biz-contacts")
+# path_to_json = os.path.join(BASE_DIR, 'biz\\biz-contacts-service-account.json')
+# print(path_to_json)
+# vision_client = vision.Client.from_service_account_json(path_to_json, "biz-contacts")
 
 # Create your views here.
 def index(request):
