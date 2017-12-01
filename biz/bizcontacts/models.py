@@ -38,7 +38,7 @@ class Contact(models.Model):
                 number_list.insert(4,')')
                 number_list.insert(5,'-')
                 number_list.insert(9,'-')    
-        return ('').join(number_list)
+            return ('').join(number_list)
         else:
             return ''
 

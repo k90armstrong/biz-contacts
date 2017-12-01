@@ -6,6 +6,15 @@ from .forms import NewContact
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
+from biz.settings import BASE_DIR
+from google.cloud import vision
+from google.cloud.vision import types
+import os, io
+
+#instantiates a client, specifying the project credentials (json file)
+path_to_json = os.path.join(BASE_DIR, 'biz\\biz-contacts-service-account.json')
+print(path_to_json)
+vision_client = vision.Client.from_service_account_json(path_to_json, "biz-contacts")
 
 # Create your views here.
 def index(request):
@@ -91,3 +100,15 @@ def create_contact(request):
         contact = Contact(name=name, email=email, business_name=business_name, user=user, cell_number=cell_number, work_number=work_number, notes=notes, website=website)
         contact.save()
         return redirect(reverse('dashboard')) 
+
+def parse_image(image_file):
+    client = vision.ImageAnnotatorClient()
+    file_name = os.path.join(os.path.dirname(__file__, image_file))
+    with io.open(file_name, 'rb') as vision_file:
+        content = vision_file.read()
+    image = types.Image(content=content)
+    response = client.label_detection(image=image)
+    labels = response.label_annotations
+    print('Labels')
+    for label in labels:
+        print(label.description)
